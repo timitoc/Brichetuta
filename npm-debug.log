@@ -1,319 +1,72 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'install', '-g', 'nodemon' ]
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'install', 'gource' ]
 2 info using npm@1.4.21
 3 info using node@v0.10.25
-4 verbose cache add [ 'nodemon', null ]
-5 verbose cache add name=undefined spec="nodemon" args=["nodemon",null]
-6 verbose parsed url { protocol: null,
-6 verbose parsed url   slashes: null,
-6 verbose parsed url   auth: null,
-6 verbose parsed url   host: null,
-6 verbose parsed url   port: null,
-6 verbose parsed url   hostname: null,
-6 verbose parsed url   hash: null,
-6 verbose parsed url   search: null,
-6 verbose parsed url   query: null,
-6 verbose parsed url   pathname: 'nodemon',
-6 verbose parsed url   path: 'nodemon',
-6 verbose parsed url   href: 'nodemon' }
-7 silly lockFile 1625b929-nodemon nodemon
-8 verbose lock nodemon /home/timi/.npm/1625b929-nodemon.lock
-9 silly lockFile 1625b929-nodemon nodemon
-10 silly lockFile 1625b929-nodemon nodemon
-11 verbose addNamed [ 'nodemon', '' ]
-12 verbose addNamed [ null, '*' ]
-13 silly lockFile 4f5e51c6-nodemon nodemon@
-14 verbose lock nodemon@ /home/timi/.npm/4f5e51c6-nodemon.lock
-15 silly addNameRange { name: 'nodemon', range: '*', hasData: false }
-16 verbose request where is /nodemon
-17 verbose request registry https://registry.npmjs.org/
-18 verbose request id ce93203ce60d179c
-19 verbose url raw /nodemon
-20 verbose url resolving [ 'https://registry.npmjs.org/', './nodemon' ]
-21 verbose url resolved https://registry.npmjs.org/nodemon
-22 verbose request where is https://registry.npmjs.org/nodemon
-23 info trying registry request attempt 1 at 16:07:38
-24 http GET https://registry.npmjs.org/nodemon
-25 http 200 https://registry.npmjs.org/nodemon
-26 silly registry.get cb [ 200,
-26 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-26 silly registry.get     etag: '"54PGXNWFDWYI3VXSK8VIUZWCZ"',
-26 silly registry.get     'content-type': 'application/json',
-26 silly registry.get     'content-encoding': 'gzip',
-26 silly registry.get     'cache-control': 'max-age=300',
-26 silly registry.get     'content-length': '24586',
-26 silly registry.get     'accept-ranges': 'bytes',
-26 silly registry.get     date: 'Mon, 12 Sep 2016 13:07:38 GMT',
-26 silly registry.get     via: '1.1 varnish',
-26 silly registry.get     age: '110',
-26 silly registry.get     connection: 'keep-alive',
-26 silly registry.get     'x-served-by': 'cache-bma7030-BMA',
-26 silly registry.get     'x-cache': 'HIT',
-26 silly registry.get     'x-cache-hits': '2',
-26 silly registry.get     'x-timer': 'S1473685658.360932,VS0,VE0',
-26 silly registry.get     vary: 'Accept-Encoding' } ]
-27 silly addNameRange number 2 { name: 'nodemon', range: '*', hasData: true }
-28 silly addNameRange versions [ 'nodemon',
-28 silly addNameRange   [ '0.1.4',
-28 silly addNameRange     '0.1.5',
-28 silly addNameRange     '0.1.6',
-28 silly addNameRange     '0.1.7',
-28 silly addNameRange     '0.1.8',
-28 silly addNameRange     '0.2.0',
-28 silly addNameRange     '0.2.1',
-28 silly addNameRange     '0.2.2',
-28 silly addNameRange     '0.3.0',
-28 silly addNameRange     '0.3.1',
-28 silly addNameRange     '0.3.2',
-28 silly addNameRange     '0.4.0',
-28 silly addNameRange     '0.4.1',
-28 silly addNameRange     '0.5.0',
-28 silly addNameRange     '0.5.1',
-28 silly addNameRange     '0.5.2',
-28 silly addNameRange     '0.5.3',
-28 silly addNameRange     '0.5.4',
-28 silly addNameRange     '0.5.5',
-28 silly addNameRange     '0.5.6',
-28 silly addNameRange     '0.5.7',
-28 silly addNameRange     '0.6.0',
-28 silly addNameRange     '0.6.1',
-28 silly addNameRange     '0.6.2',
-28 silly addNameRange     '0.6.3',
-28 silly addNameRange     '0.6.4',
-28 silly addNameRange     '0.6.5',
-28 silly addNameRange     '0.6.6',
-28 silly addNameRange     '0.6.7',
-28 silly addNameRange     '0.6.8',
-28 silly addNameRange     '0.6.9',
-28 silly addNameRange     '0.6.10',
-28 silly addNameRange     '0.6.11',
-28 silly addNameRange     '0.6.12',
-28 silly addNameRange     '0.6.13',
-28 silly addNameRange     '0.6.14',
-28 silly addNameRange     '0.6.15',
-28 silly addNameRange     '0.6.16',
-28 silly addNameRange     '0.6.17',
-28 silly addNameRange     '0.6.18',
-28 silly addNameRange     '0.6.19',
-28 silly addNameRange     '0.6.20',
-28 silly addNameRange     '0.6.21',
-28 silly addNameRange     '0.6.22',
-28 silly addNameRange     '0.6.23',
-28 silly addNameRange     '0.7.0',
-28 silly addNameRange     '0.7.1',
-28 silly addNameRange     '0.7.2',
-28 silly addNameRange     '0.7.3',
-28 silly addNameRange     '0.7.4',
-28 silly addNameRange     '0.7.5',
-28 silly addNameRange     '0.7.6',
-28 silly addNameRange     '0.7.7',
-28 silly addNameRange     '0.7.8',
-28 silly addNameRange     '0.7.10',
-28 silly addNameRange     '0.9.0',
-28 silly addNameRange     '0.9.1',
-28 silly addNameRange     '0.9.2',
-28 silly addNameRange     '0.9.3',
-28 silly addNameRange     '0.9.5',
-28 silly addNameRange     '0.9.6',
-28 silly addNameRange     '0.9.7',
-28 silly addNameRange     '0.9.10',
-28 silly addNameRange     '0.9.11',
-28 silly addNameRange     '0.9.12',
-28 silly addNameRange     '0.9.14',
-28 silly addNameRange     '0.9.16',
-28 silly addNameRange     '0.9.17',
-28 silly addNameRange     '1.0.0',
-28 silly addNameRange     '1.0.1',
-28 silly addNameRange     '1.0.2',
-28 silly addNameRange     '1.0.2-rc',
-28 silly addNameRange     '0.6.10-a',
-28 silly addNameRange     '1.0.2-rc3',
-28 silly addNameRange     '1.0.2-rc4',
-28 silly addNameRange     '1.0.3',
-28 silly addNameRange     '1.0.4',
-28 silly addNameRange     '1.0.5',
-28 silly addNameRange     '1.0.6',
-28 silly addNameRange     '1.0.7',
-28 silly addNameRange     '1.0.8',
-28 silly addNameRange     '1.0.9',
-28 silly addNameRange     '1.0.10',
-28 silly addNameRange     '1.0.11',
-28 silly addNameRange     '1.0.12',
-28 silly addNameRange     '1.0.13',
-28 silly addNameRange     '1.0.14',
-28 silly addNameRange     '1.0.15',
-28 silly addNameRange     '1.0.16',
-28 silly addNameRange     '1.0.17-rc1',
-28 silly addNameRange     '1.0.17-rc2',
-28 silly addNameRange     '1.0.17',
-28 silly addNameRange     '1.0.18',
-28 silly addNameRange     '1.0.19',
-28 silly addNameRange     '1.0.20',
-28 silly addNameRange     '1.1.0-alpha',
-28 silly addNameRange     '1.1.0',
-28 silly addNameRange     '1.1.1',
-28 silly addNameRange     '1.2.0',
-28 silly addNameRange     '1.2.1',
-28 silly addNameRange     '1.3.0-0',
-28 silly addNameRange     '1.3.0-1',
-28 silly addNameRange     '1.3.0-2',
-28 silly addNameRange     '1.3.0-3',
-28 silly addNameRange     '1.3.0-4',
-28 silly addNameRange     '1.3.0-5',
-28 silly addNameRange     '1.3.0-6',
-28 silly addNameRange     '1.3.0-7',
-28 silly addNameRange     '1.3.0',
-28 silly addNameRange     '1.3.1',
-28 silly addNameRange     '1.3.2',
-28 silly addNameRange     '1.3.3',
-28 silly addNameRange     '1.3.5',
-28 silly addNameRange     '1.3.6',
-28 silly addNameRange     '1.3.7',
-28 silly addNameRange     '1.3.8',
-28 silly addNameRange     '1.4.0',
-28 silly addNameRange     '1.4.1',
-28 silly addNameRange     '1.5.0-alpha1',
-28 silly addNameRange     '1.5.0-alpha2',
-28 silly addNameRange     '1.5.0-alpha3',
-28 silly addNameRange     '1.5.0-alpha4',
-28 silly addNameRange     '1.4.2',
-28 silly addNameRange     '1.5.0',
-28 silly addNameRange     '1.5.1',
-28 silly addNameRange     '1.6.0',
-28 silly addNameRange     '1.6.1',
-28 silly addNameRange     '1.7.0',
-28 silly addNameRange     '1.7.1',
-28 silly addNameRange     '1.7.2',
-28 silly addNameRange     '1.7.3',
-28 silly addNameRange     '1.8.0',
-28 silly addNameRange     '1.8.1',
-28 silly addNameRange     '1.9.0',
-28 silly addNameRange     '1.9.1',
-28 silly addNameRange     '1.9.2',
-28 silly addNameRange     '1.10.0',
-28 silly addNameRange     '1.10.1',
-28 silly addNameRange     '1.10.2' ] ]
-29 verbose addNamed [ 'nodemon', '1.10.2' ]
-30 verbose addNamed [ '1.10.2', '1.10.2' ]
-31 silly lockFile 9b04be7e-nodemon-1-10-2 nodemon@1.10.2
-32 verbose lock nodemon@1.10.2 /home/timi/.npm/9b04be7e-nodemon-1-10-2.lock
-33 silly lockFile f48e1627-s-org-nodemon-nodemon-1-10-2-tgz https://registry.npmjs.org/nodemon/-/nodemon-1.10.2.tgz
-34 verbose lock https://registry.npmjs.org/nodemon/-/nodemon-1.10.2.tgz /home/timi/.npm/f48e1627-s-org-nodemon-nodemon-1-10-2-tgz.lock
-35 verbose addRemoteTarball [ 'https://registry.npmjs.org/nodemon/-/nodemon-1.10.2.tgz',
-35 verbose addRemoteTarball   'ec511e14c3ad0858fc121c6006890ed27b7c412e' ]
-36 info retry fetch attempt 1 at 16:07:38
-37 verbose fetch to= /tmp/npm-9243-2ye4f1IU/registry.npmjs.org/nodemon/-/nodemon-1.10.2.tgz
-38 http GET https://registry.npmjs.org/nodemon/-/nodemon-1.10.2.tgz
-39 http 200 https://registry.npmjs.org/nodemon/-/nodemon-1.10.2.tgz
-40 silly lockFile f48e1627-s-org-nodemon-nodemon-1-10-2-tgz https://registry.npmjs.org/nodemon/-/nodemon-1.10.2.tgz
-41 silly lockFile f48e1627-s-org-nodemon-nodemon-1-10-2-tgz https://registry.npmjs.org/nodemon/-/nodemon-1.10.2.tgz
-42 silly lockFile 9b04be7e-nodemon-1-10-2 nodemon@1.10.2
-43 silly lockFile 9b04be7e-nodemon-1-10-2 nodemon@1.10.2
-44 silly lockFile 4f5e51c6-nodemon nodemon@
-45 silly lockFile 4f5e51c6-nodemon nodemon@
-46 silly resolved [ { name: 'nodemon',
-46 silly resolved     homepage: 'http://nodemon.io',
-46 silly resolved     author: { name: 'Remy Sharp', url: 'http://github.com/remy' },
-46 silly resolved     bin: { nodemon: './bin/nodemon.js' },
-46 silly resolved     engines: { node: '>=0.8' },
-46 silly resolved     repository: { type: 'git', url: 'git+https://github.com/remy/nodemon.git' },
-46 silly resolved     description: 'Simple monitor script for use during development of a node.js app.',
-46 silly resolved     keywords:
-46 silly resolved      [ 'monitor',
-46 silly resolved        'development',
-46 silly resolved        'restart',
-46 silly resolved        'autoload',
-46 silly resolved        'reload',
-46 silly resolved        'terminal' ],
-46 silly resolved     license: 'MIT',
-46 silly resolved     main: './lib/nodemon',
-46 silly resolved     scripts:
-46 silly resolved      { coverage: 'istanbul cover _mocha -- --timeout 30000 --ui bdd --reporter list test/**/*.test.js',
-46 silly resolved        lint: 'jscs lib/**/*.js -v',
-46 silly resolved        ':spec': 'mocha --timeout 30000 --ui bdd test/**/*.test.js',
-46 silly resolved        test: 'npm run lint && npm run spec',
-46 silly resolved        spec: 'for FILE in test/**/*.test.js; do echo $FILE; ./node_modules/.bin/mocha --timeout 30000 $FILE; if [ $? -ne 0 ]; then exit 1; fi; sleep 1; done',
-46 silly resolved        web: 'node web',
-46 silly resolved        'semantic-release': 'semantic-release pre && npm publish && semantic-release post' },
-46 silly resolved     devDependencies:
-46 silly resolved      { async: '1.4.2',
-46 silly resolved        'coffee-script': '~1.7.1',
-46 silly resolved        connect: '~2.19.1',
-46 silly resolved        istanbul: '~0.2.10',
-46 silly resolved        jscs: '2.1.1',
-46 silly resolved        mocha: '2.3.3',
-46 silly resolved        should: '~4.0.0',
-46 silly resolved        'semantic-release': '4.3.5' },
-46 silly resolved     dependencies:
-46 silly resolved      { chokidar: '^1.4.3',
-46 silly resolved        debug: '^2.2.0',
-46 silly resolved        'es6-promise': '^3.0.2',
-46 silly resolved        'ignore-by-default': '^1.0.0',
-46 silly resolved        'lodash.defaults': '^3.1.2',
-46 silly resolved        minimatch: '^3.0.0',
-46 silly resolved        'ps-tree': '^1.0.1',
-46 silly resolved        touch: '1.0.0',
-46 silly resolved        undefsafe: '0.0.3',
-46 silly resolved        'update-notifier': '0.5.0' },
-46 silly resolved     version: '1.10.2',
-46 silly resolved     gitHead: 'be5d4e8d13a6dcc16c65b5bce59edef54496a8ae',
-46 silly resolved     bugs: { url: 'https://github.com/remy/nodemon/issues' },
-46 silly resolved     _id: 'nodemon@1.10.2',
-46 silly resolved     _shasum: 'ec511e14c3ad0858fc121c6006890ed27b7c412e',
-46 silly resolved     _from: 'nodemon@',
-46 silly resolved     _npmVersion: '2.15.10',
-46 silly resolved     _nodeVersion: '6.4.0',
-46 silly resolved     _npmUser: { name: 'remy', email: 'remy@leftlogic.com' },
-46 silly resolved     dist:
-46 silly resolved      { shasum: 'ec511e14c3ad0858fc121c6006890ed27b7c412e',
-46 silly resolved        tarball: 'https://registry.npmjs.org/nodemon/-/nodemon-1.10.2.tgz' },
-46 silly resolved     maintainers: [ [Object] ],
-46 silly resolved     _npmOperationalInternal:
-46 silly resolved      { host: 'packages-16-east.internal.npmjs.com',
-46 silly resolved        tmp: 'tmp/nodemon-1.10.2.tgz_1471554605580_0.2310010411310941' },
-46 silly resolved     directories: {},
-46 silly resolved     _resolved: 'https://registry.npmjs.org/nodemon/-/nodemon-1.10.2.tgz' } ]
-47 info install nodemon@1.10.2 into /usr/local/lib
-48 info installOne nodemon@1.10.2
-49 verbose lib/node_modules/nodemon unbuild
-50 verbose tar unpack /home/timi/.npm/nodemon/1.10.2/package.tgz
-51 silly lockFile 15c6d46c-r-local-lib-node-modules-nodemon tar:///usr/local/lib/node_modules/nodemon
-52 verbose lock tar:///usr/local/lib/node_modules/nodemon /home/timi/.npm/15c6d46c-r-local-lib-node-modules-nodemon.lock
-53 silly lockFile de5ecc07-i-npm-nodemon-1-10-2-package-tgz tar:///home/timi/.npm/nodemon/1.10.2/package.tgz
-54 verbose lock tar:///home/timi/.npm/nodemon/1.10.2/package.tgz /home/timi/.npm/de5ecc07-i-npm-nodemon-1-10-2-package-tgz.lock
-55 silly gunzTarPerm modes [ '775', '664' ]
-56 error tar.unpack untar error /home/timi/.npm/nodemon/1.10.2/package.tgz
-57 silly lockFile 15c6d46c-r-local-lib-node-modules-nodemon tar:///usr/local/lib/node_modules/nodemon
-58 silly lockFile 15c6d46c-r-local-lib-node-modules-nodemon tar:///usr/local/lib/node_modules/nodemon
-59 silly lockFile de5ecc07-i-npm-nodemon-1-10-2-package-tgz tar:///home/timi/.npm/nodemon/1.10.2/package.tgz
-60 silly lockFile de5ecc07-i-npm-nodemon-1-10-2-package-tgz tar:///home/timi/.npm/nodemon/1.10.2/package.tgz
-61 verbose lib/node_modules/nodemon unbuild
-62 error Error: EACCES, mkdir '/usr/local/lib/node_modules'
-62 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules']
-62 error   errno: 3,
-62 error   code: 'EACCES',
-62 error   path: '/usr/local/lib/node_modules',
-62 error   fstream_type: 'Directory',
-62 error   fstream_path: '/usr/local/lib/node_modules/nodemon',
-62 error   fstream_class: 'DirWriter',
-62 error   fstream_stack:
-62 error    [ '/usr/lib/nodejs/fstream/lib/writer.js:171:23',
-62 error      '/usr/lib/nodejs/mkdirp/index.js:46:53',
-62 error      'Object.oncomplete (fs.js:107:15)' ] }
-63 error Please try running this command again as root/Administrator.
-64 error System Linux 4.2.0-42-generic
-65 error command "/usr/bin/nodejs" "/usr/bin/npm" "install" "-g" "nodemon"
-66 error cwd /home/timi/Documents/Main/Nod.js/forth
-67 error node -v v0.10.25
-68 error npm -v 1.4.21
-69 error path /usr/local/lib/node_modules
-70 error fstream_path /usr/local/lib/node_modules/nodemon
-71 error fstream_type Directory
-72 error fstream_class DirWriter
-73 error code EACCES
-74 error errno 3
-75 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules'
-76 error fstream_stack /usr/lib/nodejs/fstream/lib/writer.js:171:23
-76 error fstream_stack /usr/lib/nodejs/mkdirp/index.js:46:53
-76 error fstream_stack Object.oncomplete (fs.js:107:15)
-77 verbose exit [ 3, true ]
+4 warn package.json forth@0.0.0 No repository field.
+5 verbose readDependencies using package.json deps
+6 verbose cache add [ 'gource', null ]
+7 verbose cache add name=undefined spec="gource" args=["gource",null]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: 'gource',
+8 verbose parsed url   path: 'gource',
+8 verbose parsed url   href: 'gource' }
+9 silly lockFile ff860cf9-gource gource
+10 verbose lock gource /home/timi/.npm/ff860cf9-gource.lock
+11 silly lockFile ff860cf9-gource gource
+12 silly lockFile ff860cf9-gource gource
+13 verbose addNamed [ 'gource', '' ]
+14 verbose addNamed [ null, '*' ]
+15 silly lockFile bf1077bc-gource gource@
+16 verbose lock gource@ /home/timi/.npm/bf1077bc-gource.lock
+17 silly addNameRange { name: 'gource', range: '*', hasData: false }
+18 verbose request where is /gource
+19 verbose request registry https://registry.npmjs.org/
+20 verbose request id 9c042f4b1f2210dd
+21 verbose url raw /gource
+22 verbose url resolving [ 'https://registry.npmjs.org/', './gource' ]
+23 verbose url resolved https://registry.npmjs.org/gource
+24 verbose request where is https://registry.npmjs.org/gource
+25 info trying registry request attempt 1 at 16:41:36
+26 http GET https://registry.npmjs.org/gource
+27 http 404 https://registry.npmjs.org/gource
+28 silly registry.get cb [ 404,
+28 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+28 silly registry.get     etag: '"3FHRTWWZT2Q489JHY9H596OUV"',
+28 silly registry.get     'content-type': 'application/json',
+28 silly registry.get     'cache-control': 'max-age=0',
+28 silly registry.get     'content-length': '409',
+28 silly registry.get     'accept-ranges': 'bytes',
+28 silly registry.get     date: 'Mon, 12 Sep 2016 13:41:36 GMT',
+28 silly registry.get     via: '1.1 varnish',
+28 silly registry.get     age: '0',
+28 silly registry.get     connection: 'keep-alive',
+28 silly registry.get     'x-served-by': 'cache-fra1249-FRA',
+28 silly registry.get     'x-cache': 'MISS',
+28 silly registry.get     'x-cache-hits': '0',
+28 silly registry.get     'x-timer': 'S1473687696.638338,VS0,VE108',
+28 silly registry.get     vary: 'Accept-Encoding' } ]
+29 silly lockFile bf1077bc-gource gource@
+30 silly lockFile bf1077bc-gource gource@
+31 error 404 Not Found
+31 error 404
+31 error 404 'gource' is not in the npm registry.
+31 error 404 You should bug the author to publish it
+31 error 404 It was specified as a dependency of 'forth'
+31 error 404
+31 error 404 Note that you can also install from a
+31 error 404 tarball, folder, or http url, or git url.
+32 error System Linux 4.2.0-42-generic
+33 error command "/usr/bin/nodejs" "/usr/bin/npm" "install" "gource"
+34 error cwd /home/timi/Git-Work/Brichetuta
+35 error node -v v0.10.25
+36 error npm -v 1.4.21
+37 error code E404
+38 verbose exit [ 1, true ]

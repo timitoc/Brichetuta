@@ -4,6 +4,18 @@
   <script src="/socket.io/socket.io.js"></script>
   <script>
     var socket = io();
+    function bodyOnloadHandler() {
+        socket.on('message', function(data){
+      	  document.getElementById("demo").innerHTML = data; 
+        });
+        socket.on('broadcast',function(data){
+		document.getElementById("demo").innerHTML = data.description; 
+	});
+    }
+
   </script>
-  <body>Hello world</body>
+  <body onload="bodyOnloadHandler()">
+    Hello world
+    <div id="demo"> Haha div </div>
+  </body>
 </html>
