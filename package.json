@@ -1,12 +1,12 @@
 {
-  "name": "forth",
-  "version": "0.0.0",
-  "description": "A project for learning",
+  "name": "Brichetuta",
+  "version": "1.0.0",
+  "description": "Brichetuta",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Me and my firends",
+  "author": " Alex Dumitru,  Razvan Ardelean, Timotei Ardelean",
   "license": "ISC",
   "dependencies": {
     "express": "^4.14.0",
