@@ -43,7 +43,7 @@ function main(){
     console.log('ready');
     var userForm = new UserForm(function(username){
         alert("salut " + username + "!");
-        socket.emit('onNewUser', username);
+        socket.emit('changeUsername', username);
     });
 
     var mWindow = new MWindow(userForm.view.frame);
@@ -52,10 +52,10 @@ function main(){
     userForm.controller.init();
     userForm.view.submitButton.click(function(){mWindow.hide();});
 
-    socket.on('userEntered', function (users) {
+    socket.on('playerListUpdate', function (players) {
         $('#usersPanel').empty();
-        for(var i in users){
-            $('#usersPanel').append(users[i].name);
+        for(var i in players){
+            $('#usersPanel').append(players[i].name);
             $('#usersPanel').append('<br>');
         }
     });

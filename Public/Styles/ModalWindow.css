@@ -8,7 +8,7 @@
     overflow: hidden;
 }
 
-.modalWrapper .backgroundLayer{
+.modalWrapper .modalBackgroundLayer{
     background-color: rgba(45, 45, 45, 0.9);
     width: 100%;
     height: 100%;
