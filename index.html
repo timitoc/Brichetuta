@@ -5,17 +5,22 @@
   <script>
     var socket = io();
     function bodyOnloadHandler() {
-        socket.on('message', function(data){
-      	  document.getElementById("demo").innerHTML = data; 
+        socket.on('room_size', function(data){
+      	  document.getElementById("myRoomSize").innerHTML = "There are " + data.description + " players in this room ";
         });
         socket.on('broadcast',function(data){
-		document.getElementById("demo").innerHTML = data.description; 
-	});
+	     	  document.getElementById("clients").innerHTML = "There are " + data.description + " players online";
+      	});
+        socket.on('myRoom', function(data) {
+          document.getElementById("myRoomInd").innerHTML = "Your room index is " + data.description;
+        });
     }
 
   </script>
   <body onload="bodyOnloadHandler()">
     Hello world
-    <div id="demo"> Haha div </div>
+    <div id="clients"> There are x players online </div>
+    <div id="myRoomInd"> Your room index is x </div>
+    <div id="myRoomSize"> There are x players in this room </div>
   </body>
 </html>
