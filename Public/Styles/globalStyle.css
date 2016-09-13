@@ -1,0 +1,20 @@
+@import "ModalWindow.css";
+
+.mainButton{
+    display: block;
+    float: left;
+    height: 30px;
+    min-width: 50px;
+    overflow: hidden;
+    background-color: rgb(26, 99, 70);
+    color: white;
+    text-align: center;
+    vertical-align: center;
+    padding: 5px;
+}
+
+.mainButton:Hover{
+    cursor: pointer;
+    background-color: rgb(75, 254, 170);
+    color: black;
+}
