@@ -18,3 +18,9 @@
     background-color: rgb(75, 254, 170);
     color: black;
 }
+
+.usernameInput{
+    margin: auto;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}

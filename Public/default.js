@@ -16,7 +16,8 @@ function UserFormModel(){
 function UserFormView(){
     this.frame = $(
         '<div>' +
-            '<label>Introduceți Numele de Utilizator:</label>' +
+            '<br>' +
+            '<label>Username:</label>' +
             '<br>' +
             '<input type = "text" class = "usernameInput"/>' +
             '<br>' +
@@ -47,6 +48,8 @@ function main(){
     });
 
     var mWindow = new MWindow(userForm.view.frame);
+    mWindow.setHeight('256px');
+    mWindow.setWidth('300px');
     mWindow.create();
     mWindow.controller.init();
     userForm.controller.init();

@@ -17,6 +17,9 @@ MWindow.prototype.show = function(){
 MWindow.prototype.setWidth = function(newWidth){
     this.view.window.css('width', newWidth);
 }
+MWindow.prototype.setHeight = function(newHeight){
+    this.view.window.css('height', newHeight);
+}
 
 
 var MWindowModel = function(content){
