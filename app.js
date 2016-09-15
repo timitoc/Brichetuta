@@ -10,9 +10,9 @@ app.use(express.static(path.join(__dirname, 'Public')));
 app.use(express.static(path.join(__dirname, 'Public/Sources')));
 app.use(express.static(path.join(__dirname, 'Public/Styles')));
 
-var ROOM_MAX_SIZE = 3;
+var ROOM_MAX_SIZE = 6;
 
-var User = require('./ServerSources/User');
+//var User = require('./ServerSources/User');
 
 var rooms = new Array();
 var players = [];
@@ -63,12 +63,13 @@ var findRoom = function() {
     if (rooms[i].started == false && rooms[i].nrOfPlayers < ROOM_MAX_SIZE)
       return i;
   }
-  rooms.push(new Room());
+  var r = new Room(rooms.length);
+  rooms.push(r);
   return rooms.length - 1;
 }
 
 var playerEntersRoom = function(roomInd, player) {
-  rooms[roomInd].nrOfPlayers++;
+  rooms[roomInd].addPlayer();
   player.roomNr = roomInd;
 }
 
@@ -99,7 +100,7 @@ var playerLeavesRoom = function(socketId) {
   if (playerDelete.roomNr === -1 )
       return;
   var leftRoom = rooms[playerDelete.roomNr];
-  leftRoom.nrOfPlayers--;
+  leftRoom.removePlayer();
 
   if (leftRoom.nrOfPlayers > 0)
     io.to("room-" + playerDelete.roomNr).emit('room_size', {description: leftRoom.nrOfPlayers});
@@ -107,11 +108,69 @@ var playerLeavesRoom = function(socketId) {
 }
 
 // Room class
-function Room() {
+function Room(roomNr) {
+  var self = this;
   this.nrOfPlayers = 0;
   this.started = false;
+  this.state = "nothing"
+  this.roomNr = roomNr;
+  this.secRemaining = 1000;
+
+  this.addPlayer = function() {
+    self.nrOfPlayers++;
+    self.updateSecRemaining();
+    if (self.nrOfPlayers >= 3)
+      self.startCounting();
+  }
+
+  this.updateSecRemaining = function() {
+    if (self.nrOfPlayers === 3)
+      self.secRemaining = 35;
+    else if (self.nrOfPlayers === 4)
+      self.secRemaining = 20;
+    else if (self.nrOfPlayers === 5)
+      self.secRemaining = 10;
+    else if (self.nrOfPlayers === 6)
+      self.secRemaining = 5;
+  }
+
+  this.startCounting = function() {
+    if (self.state == "counting")
+      clearInterval(self.timeout);
+    else
+      self.state = "counting";
+    self.timeout = setInterval(function() {
+        self.secRemaining--;
+        io.to("room-" + self.roomNr).emit('room_status', {description: "The game will start in " + self.secRemaining});
+        if (self.secRemaining <= 0) {
+          self.startGame();
+          clearInterval(self.timeout);
+        }
+      }, 1000);
+  }
+  this.startGame = function() {
+    this.state = "started";
+    this.started = true;
+    io.to("room-" + self.roomNr).emit('room_status', {description: "Game started with: " + self.nrOfPlayers + " players"});
+  }
+
+  this.removePlayer = function() {
+    self.nrOfPlayers--;
+    self.updateSecRemaining();
+    if (self.nrOfPlayers >= 3)
+      self.startCounting();
+    else {
+      clearInterval(self.timeout);
+      self.state == "nothing";
+      if (self.nrOfPlayers > 0)
+        io.to("room-" + self.roomNr).emit('room_status', {description: "Waiting for more players..."});
+    }
+  }
+
   return this;
 }
+
+
 
 // Player class
 function Player(clientId, userName) {
@@ -124,4 +183,3 @@ function Player(clientId, userName) {
 http.listen(3000, function(){
   console.log('listening on *:3000');
 });
-
