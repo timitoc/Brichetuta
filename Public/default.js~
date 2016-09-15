@@ -43,6 +43,7 @@ UserFormController.prototype.init = function(){
 function main(){
     console.log('ready');
     var userForm = new UserForm(function(username){
+        alert("salut " + username + "!");
         socket.emit('changeUsername', username);
     });
 
