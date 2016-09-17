@@ -12,8 +12,7 @@ app.use(express.static(path.join(__dirname, 'Public/Styles')));
 
 var ROOM_MAX_SIZE = 6;
 
-var Game = require('./ServerSources/Game');
-var Player = require('./ServerSources/Player');
+//var User = require('./ServerSources/User');
 
 var rooms = new Array();
 var players = [];
@@ -56,15 +55,6 @@ io.on('connection', function(socket){
 
         io.to('room-' + roomInd).emit('playerListUpdate', getPlayersByRoomNr(roomInd));
     });
-
-    socket.on('move', function() {
-
-    });
-
-    socket.on('click_brichetuta', function() {
-
-    });
-
 });
 
 
@@ -117,8 +107,6 @@ var playerLeavesRoom = function(socketId) {
   return playerDelete.roomNr;
 }
 
-
-
 // Room class
 function Room(roomNr) {
   var self = this;
@@ -163,16 +151,12 @@ function Room(roomNr) {
   this.startGame = function() {
     this.state = "started";
     this.started = true;
-    self.game = new Game(getPlayersByRoomNr(self.roomNr));
-    self.game.shuffle();
     io.to("room-" + self.roomNr).emit('room_status', {description: "Game started with: " + self.nrOfPlayers + " players"});
-    io.to("room-" + self.roomNr).emit('start_game', true);
   }
 
   this.removePlayer = function() {
     self.nrOfPlayers--;
     self.updateSecRemaining();
-    self.started = false;
     if (self.nrOfPlayers >= 3)
       self.startCounting();
     else {
@@ -186,6 +170,15 @@ function Room(roomNr) {
   return this;
 }
 
+
+
+// Player class
+function Player(clientId, userName) {
+        this.id = clientId;
+        this.name = userName;
+        this.roomNr = -1;
+        return this;
+}
 
 http.listen(3000, function(){
   console.log('listening on *:3000');
