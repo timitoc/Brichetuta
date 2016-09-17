@@ -58,11 +58,11 @@ io.on('connection', function(socket){
     });
 
     socket.on('move', function() {
-
+        rooms[selectPlayerBySocketId(socket.id).roomNr].move(socket.id);
     });
 
     socket.on('click_brichetuta', function() {
-
+        rooms[selectPlayerBySocketId(socket.id).roomNr].clickB(socket.id);
     });
 
 });
@@ -167,6 +167,37 @@ function Room(roomNr) {
     self.game.shuffle();
     io.to("room-" + self.roomNr).emit('room_status', {description: "Game started with: " + self.nrOfPlayers + " players"});
     io.to("room-" + self.roomNr).emit('start_game', true);
+  }
+
+  this.move = function(socketId) {
+    if (!self.started) return;
+    self.game.move(socketId);
+    sendUpdate();
+  }
+
+  this.clickB = function(socketId) {
+    if (!self.started) return;
+    self.game.clickB(socketId);
+    var winners = self.game.getWinners();
+    if (winners.length > 0) {
+      io.to("room-" + self.roomNr).emit('end_round', winners);
+      self.game.rule++;
+      if (rule > 7) rule -= 7;
+      self.game.shuffle();
+    }
+    sendUpdate();
+  }
+
+  this.sendUpdate = function() {
+    var plData = [];
+    for (var i = 0; i < self.game.players.length; i++)
+      plData.push({last_card: self.game.players[i].revCards[self.game.players[i].revCards.length-1],
+                   num_card: self.game.players[i].unrevCards.length});
+    var toReturn = {
+      turn: self.game.turn,
+      playerData: plData
+    };
+    io.to("room-" + self.roomNr).emit('game_update', toReturn);
   }
 
   this.removePlayer = function() {
