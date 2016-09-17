@@ -1,4 +1,5 @@
 @import "ModalWindow.css";
+@import "gameStyle.css";
 
 .mainButton{
     display: block;

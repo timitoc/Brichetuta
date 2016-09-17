@@ -8,11 +8,9 @@ function UserForm(callback) {
     this.view  = new UserFormView(this.model);
     this.controller = new UserFormController(this.model, this.view, callback);
 }
-
 function UserFormModel(){
     this.username = "";
 }
-
 function UserFormView(){
     this.frame = $(
         '<div>' +
@@ -25,13 +23,11 @@ function UserFormView(){
     this.submitButton = $('<div class="mainButton"> OK </div>');
     this.frame.append(this.submitButton);
 }
-
 function UserFormController(model, view, callback){
     this.model = model;
     this.view  = view;
     this.callback = callback;
 };
-
 UserFormController.prototype.init = function(){
     var self = this;
     this.view.submitButton.click(function(){
@@ -43,7 +39,6 @@ UserFormController.prototype.init = function(){
 function main(){
     console.log('ready');
     var userForm = new UserForm(function(username){
-        alert("salut " + username + "!");
         socket.emit('changeUsername', username);
     });
 
@@ -53,7 +48,11 @@ function main(){
     mWindow.create();
     mWindow.controller.init();
     userForm.controller.init();
-    userForm.view.submitButton.click(function(){mWindow.hide();});
+    userForm.view.submitButton.click(function(){
+        mWindow.hide();
+        var game = new Game();
+        game.create();
+    });
 
     socket.on('playerListUpdate', function (players) {
         $('#usersPanel').empty();
@@ -62,5 +61,34 @@ function main(){
             $('#usersPanel').append('<br>');
         }
     });
+
+
 };
 
+function Game() {
+    this.model = new GameModel();
+    this.view = new GameView(this.model);
+    this.controller = new GameController(this.model, this.view);
+}
+
+Game.prototype.create = function () {
+    $('body').append($('<div class = "gameBackground"/>'));
+    $('body').append(this.view.frame);
+}
+
+function GameView(model){
+    this.frame = $('<div class = "gameFrame" />')
+    this.table = $('<object type="image/svg+xml" data="Assets/table.svg" class="table"/>');
+
+    this.frame.append(this.table);
+
+    $('#table', this.table).attr('rx', '2000');
+}
+
+function GameModel() {
+    
+}
+
+function GameController() {
+    
+}
