@@ -10,6 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.14.0",
-    "socket.io": "^1.4.8"
+    "jquery": "^3.1.1",
+    "jsdom": "^9.6.0",
+    "snapsvg": "^0.4.0",
+    "socket.io": "^1.4.8",
+    "xmlserializer": "^0.4.0"
   }
 }

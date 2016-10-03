@@ -11,6 +11,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+        <script src="ExternalSources/snap.svg.js"></script>
         <script src="Sources/ModalWindow.js"></script>
     </head>
     <script src="default.js"></script>
@@ -18,20 +19,20 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         var socket = io();
+        var game = new Game();
         function bodyOnloadHandler() {
             socket.on('broadcast', function (data) {
                 document.getElementById("clients").innerHTML = 'There are '+data.description+' players online';
             });
 
-            socket.on('room_size', function(data){
-                document.getElementById("myRoomSize").innerHTML = "There are " + data.description + " players in this room ";
+            socket.on('room_status', function (data){
+                $('#room_status').html(data.description);
             });
+
             socket.on('myRoom', function(data) {
                 document.getElementById("myRoomInd").innerHTML = "Your room index is " + data.description;
             });
-            socket.on('room_status', function(data) {
-                document.getElementById("room_status").innerHTML = data.description;
-            });
+
 	    socket.on('start_game', function(data) {
 	
 	    });
@@ -41,13 +42,21 @@
     </script>
 
     <body onload="bodyOnloadHandler()">
-    Hello world
 
-    <div id="usersPanel"></div>
-    <br>
-    <div id="clients"> There are x players online </div>
-    <div id="myRoomInd"> Your room index is x </div>
-    <div id="myRoomSize"> There are x players in this room </div>
-    <div id="room_status"> Waiting for more players... </div>
+    <div id = "leftBar">
+        <ol id="usersPanel"></ol>
+        <br>
+        <div id="clients"> There are x players online </div>
+        <div id="myRoomInd"> Your room index is x </div>
+        <div id="myRoomSize"> There are x players in this room </div>
+        <div id="room_status"> Waiting for more players... </div>
+    </div>
+    <div id = "content">
+        <div id = "gameFrame">
+            <object type="image/svg+xml" data="Assets/table2.svg" id = "gameTable" class="table"></object>
+            <div id = 'moveButton' class = "mainButton">Move</div>
+        </div>
+    </div>
+
     </body>
 </html>

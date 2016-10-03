@@ -14,6 +14,8 @@ var ROOM_MAX_SIZE = 6;
 
 var Game = require('./ServerSources/Game');
 var Player = require('./ServerSources/Player');
+var Card = require('./ServerSources/Card');
+var Deck = require('./ServerSources/Deck');
 
 var rooms = new Array();
 var players = [];
@@ -46,11 +48,11 @@ io.on('connection', function(socket){
     //io.emit('playerListUpdate', players);
     socket.on('changeUsername', function (username){
         selectPlayerBySocketId(socket.id).name = username;
-
         var roomInd = findRoom();
         socket.join("room-" + roomInd);
         playerEntersRoom(roomInd, player);
         socket.emit('myRoom', {description: roomInd});
+        socket.emit('cardBack', Card.prototype.viewGenerator.getCardView('back'));
         io.emit('broadcast', {description: clients});
         io.to("room-" + roomInd).emit('room_size', {description: rooms[roomInd].nrOfPlayers});
 
@@ -153,7 +155,7 @@ function Room(roomNr) {
       self.state = "counting";
     self.timeout = setInterval(function() {
         self.secRemaining--;
-        io.to("room-" + self.roomNr).emit('room_status', {description: "The game will start in " + self.secRemaining});
+        io.to("room-" + self.roomNr).emit('room_status', {description: self.secRemaining});
         if (self.secRemaining <= 0) {
           self.startGame();
           clearInterval(self.timeout);
@@ -165,14 +167,14 @@ function Room(roomNr) {
     this.started = true;
     self.game = new Game(getPlayersByRoomNr(self.roomNr));
     self.game.shuffle();
-    io.to("room-" + self.roomNr).emit('room_status', {description: "Game started with: " + self.nrOfPlayers + " players"});
+    io.to("room-" + self.roomNr).emit('room_status', {description: "GO"});
     io.to("room-" + self.roomNr).emit('start_game', true);
   }
 
   this.move = function(socketId) {
     if (!self.started) return;
     self.game.move(socketId);
-    sendUpdate();
+    self.sendUpdate();
   }
 
   this.clickB = function(socketId) {
@@ -185,19 +187,22 @@ function Room(roomNr) {
       if (rule > 7) rule -= 7;
       self.game.shuffle();
     }
-    sendUpdate();
+    self.sendUpdate();
   }
 
   this.sendUpdate = function() {
-    var plData = [];
-    for (var i = 0; i < self.game.players.length; i++)
-      plData.push({last_card: self.game.players[i].revCards[self.game.players[i].revCards.length-1],
-                   num_card: self.game.players[i].unrevCards.length});
-    var toReturn = {
-      turn: self.game.turn,
-      playerData: plData
-    };
-    io.to("room-" + self.roomNr).emit('game_update', toReturn);
+      var plData = [];
+
+      for (var i = 0; i < self.game.players.length; i++)
+      {
+          plData.push({last_card: Card.prototype.viewGenerator.getCardView(Deck[self.game.players[i].revCards[self.game.players[i].revCards.length-1]]),
+              num_card: self.game.players[i].unrevCards.length});
+      }
+      var toReturn = {
+          turn: self.game.turn,
+          playerData: plData
+      };
+      io.to("room-" + self.roomNr).emit('game_update', toReturn);
   }
 
   this.removePlayer = function() {
@@ -209,8 +214,11 @@ function Room(roomNr) {
     else {
       clearInterval(self.timeout);
       self.state == "nothing";
-      if (self.nrOfPlayers > 0)
-        io.to("room-" + self.roomNr).emit('room_status', {description: "Waiting for more players..."});
+      if (self.nrOfPlayers > 0){
+          var msg = "";
+          for(i in self.nrOfPlayers) msg += ".";
+          io.to("room-" + self.roomNr).emit('room_status', {description: msg});
+      }
     }
   }
 

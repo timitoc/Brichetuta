@@ -2,28 +2,29 @@
     width: 100%;
     height: 100%;
     z-index: 50;
-    position: fixed;
+   /* position: relative;
     top: 0;
     right: 0;
-    background-color: rgba(128, 128, 128, .5);
+    background-color: rgba(128, 128, 128, .5);*/
 }
-.gameFrame{
+#gameFrame{
     z-index: 51;
     background-color: transparent;
-    position: fixed;
-    position: fixed;
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    width: 100%;
-    height: 100%;
-    max-width: 1024px;
-    max-height: 512px;
+    width: 80%;
+    height: 80%;
+
+    visibility: hidden;
+
 }
 
-.gameFrame .table{
+#gameFrame .table{
     x-index: 52;
     width: 100%;
     height: 100%;
 }
+

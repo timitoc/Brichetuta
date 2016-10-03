@@ -1,0 +1,37 @@
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" height="1216.19" width="2178.18" viewBox="-.2 -236 2178.99 1216.19" id="deck" ><g xmlns="http://www.w3.org/2000/svg" id="_x32__x5F_heart" class="card">
+      <g id="g16747">
+        <g id="base_27_">
+          <path d="m 167.513,486.232 c 0,3.778 3.089,6.867 6.867,6.867 l 152.788,0 c 3.769,0 6.857,-3.089 6.857,-6.867 l 0,-228.315 c 0,-3.779 -3.089,-6.868 -6.857,-6.868 l -152.788,0 c -3.778,0 -6.867,3.089 -6.867,6.868 l 0,228.315 z" id="path16750" inkscape:connector-curvature="0" style="fill:#ffffff;stroke:#000000;stroke-width:2.5"/>
+        </g>
+      </g>
+      <g id="g16752">
+        <g id="n_2_4_">
+          <text transform="matrix(0.5339,0,0,1,173.5107,287.1882)" font-size="40" id="text16755" style="font-size:40px;font-family:CopperplateGothic-Bold;fill:#e6180a">2</text>
+        </g>
+      </g>
+      <g id="g16757">
+        <g id="n_2_5_">
+          <text transform="matrix(-0.5339,0,0,-1,329.0273,455.9636)" font-size="40" id="text16760" style="font-size:40px;font-family:CopperplateGothic-Bold;fill:#e6180a">2</text>
+        </g>
+      </g>
+      <g id="g16762">
+        <g id="heart_3_">
+          <path d="m 188.825,297.255 c -0.01,4.708 -5.908,8.137 -7.637,11.866 -1.75,-3.719 -7.657,-7.118 -7.697,-11.826 -0.01,-2.219 1.709,-4.029 3.819,-4.029 2.119,0 3.849,1.79 3.849,4.009 0,-2.229 1.709,-4.029 3.818,-4.029 2.118,-0.01 3.837,1.789 3.848,4.009 z" id="path16765" inkscape:connector-curvature="0" style="fill:#e6180a"/>
+        </g>
+      </g>
+      <g id="g16767">
+        <g id="heart_4_">
+          <path d="m 313.713,445.897 c 0.011,-4.708 5.908,-8.137 7.638,-11.865 1.749,3.719 7.657,7.117 7.697,11.825 0.01,2.22 -1.71,4.028 -3.819,4.028 -2.119,0 -3.848,-1.789 -3.848,-4.008 0,2.229 -1.71,4.028 -3.819,4.028 -2.12,0.011 -3.838,-1.788 -3.849,-4.008 z" id="path16770" inkscape:connector-curvature="0" style="fill:#e6180a"/>
+        </g>
+      </g>
+      <g id="g16772">
+        <g id="heart_5_">
+          <path d="m 232.867,460.637 c 0.024,-11.3 14.179,-19.529 18.329,-28.478 4.198,8.925 18.377,17.082 18.473,28.381 0.024,5.326 -4.103,9.669 -9.165,9.669 -5.086,0 -9.237,-4.294 -9.237,-9.62 0,5.35 -4.103,9.668 -9.165,9.668 -5.084,0.025 -9.211,-4.293 -9.235,-9.62 z" id="path16775" inkscape:connector-curvature="0" style="fill:#e6180a"/>
+        </g>
+      </g>
+      <g id="g16777">
+        <g id="heart_6_">
+          <path d="m 269.669,278.367 c -0.024,11.3 -14.179,19.529 -18.33,28.478 -4.198,-8.925 -18.377,-17.082 -18.473,-28.382 -0.024,-5.326 4.103,-9.668 9.165,-9.668 5.086,0 9.236,4.295 9.236,9.621 0,-5.35 4.103,-9.668 9.165,-9.668 5.087,-0.025 9.213,4.293 9.237,9.619 z" id="path16780" inkscape:connector-curvature="0" style="fill:#e6180a"/>
+        </g>
+      </g>
+    </g> </svg>

@@ -46,7 +46,7 @@ var Game = function (players) {
     }
 
     this.move = function(socketId) {
-        var ind = getPlayerIndFromSocketId(socketId);
+        var ind = self.getPlayerIndFromSocketId(socketId);
         if (ind == -1) {
           console.log("error 37");
           return;
@@ -58,7 +58,7 @@ var Game = function (players) {
     }
 
     this.clickB = function(socketId) {
-      var ind = getPlayerIndFromSocketId(socketId);
+      var ind = self.getPlayerIndFromSocketId(socketId);
       if (ind == -1) {
         console.log("error 49");
         return;
@@ -97,7 +97,7 @@ var Game = function (players) {
 
     this.getPlayerIndFromSocketId = function(socketId) {
       for (var i = 0; i < players.length; i++)
-        if (players[i].clientId == socketId)
+        if (players[i].id == socketId)
           return i;
       return -1;
     }
