@@ -3,6 +3,8 @@ var app = express();
 var http = require('http').Server(app);
 var path = require('path');
 var io = require('socket.io').listen(http);
+io.set('origins', '*:*');
+io.set('match origin protocol', true);
 
 http.listen(process.env.PORT || 3000);
 
