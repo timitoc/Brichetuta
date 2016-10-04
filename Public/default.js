@@ -73,6 +73,7 @@ function main(){
     });
 
     socket.on("start_game", function (data) {
+        game.model.playerInd = data.ind;
         game.start();
     });
 
@@ -190,6 +191,13 @@ GameView.prototype.doupdate = function(e){
         this.unfocusPlayers();
         this.focusPlayer(this.model.currentPlayer);
     }
+
+    if(e.scope == 'info'){
+        var infoPanel = $('#playerInfo');
+        infoPanel.empty();
+        infoPanel.append("Player Ind: " + this.model.playerInd + "<br>");
+        infoPanel.append("Nr Cards" + this.model.nrCards[this.model.playerInd] + "<br>");
+    }
 }
 
 GameView.prototype.notifyChange = function(e){
@@ -265,6 +273,7 @@ GameView.prototype.hideMessage = function(){
 function GameModel() {
     this.currentCards = [];
     this.lastCards = [];
+    this.nrCards = [];
     this.gameState = 'message';
     this.message = "...";
     this.currentPlayer = -1;
@@ -281,8 +290,10 @@ GameController.prototype.init = function(){
         self.view.focusPlayer(data.turn);
         for(var i in data.playerData){
             self.model.currentCards[i] = data.playerData[i].last_card;
+            self.model.nrCards[i] = data.playerData[i].num_card;
         }
         self.view.notifyChange({scope:'cards', players:[0, 1, 2, 3, 4, 5]});
+        self.view.notifyChange({scope:'info'});
     })
 
     socket.on('room_status', function(data) {
@@ -293,6 +304,16 @@ GameController.prototype.init = function(){
     $('#moveButton').click(function(){
         socket.emit('move');
     })
+
+    socket.on('end_round', function(winners){
+        var winnerList = "";
+        for(var i in winners){
+            winnerList += winners[i].name;
+            winnerList += "\n";
+        }
+        alert("End of Round! Winners: \n" + winnerList);
+    });
+
 }
 
 GameController.prototype.gameInit = function(){
