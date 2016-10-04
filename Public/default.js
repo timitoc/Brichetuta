@@ -134,6 +134,10 @@ function GameView(model){
     this.snapTable;
     this.tableCenter;
     this.textCenter;
+    this.cardBack;
+    this.bricheta;
+
+    this.showedCards = [];
 }
 
 GameView.prototype.init = function(){
@@ -198,10 +202,14 @@ GameView.prototype.loadCard = function(playerId, cardLink){
     var player = this.snapTable.select('#player'+playerId);
     var placeholder = player.select('#placeholder'+playerId);
 
-    player.selectAll('.card').remove();
-    if(cardLink === 'blank')
+    if (cardLink === this.showedCards[playerId])
         return;
+    player.selectAll('.card').remove();
+    if(cardLink === 'blank') {
+        return;
+    }
 
+    this.showedCards[playerId] = cardLink;
     Snap.load(cardLink, function(cardPage){
        // console.log(cardPage);
         var card = cardPage.select('.card');
@@ -224,7 +232,11 @@ GameView.prototype.loadCard = function(playerId, cardLink){
 GameView.prototype.focusPlayer = function (playerId) {
     var player = this.snapTable.select('#player'+playerId);
     var placeholder = player.select('rect');
-    placeholder.attr('fill', 'blue');
+    var last = this.snapTable.select('.focused');
+    if(last != null)
+        last.removeClass('focused');
+
+    placeholder.addClass('focused');
 };
 
 GameView.prototype.loadBricheta = function(){
