@@ -2,8 +2,9 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var path = require('path');
-var io = require('socket.io')(http);
+var io = require('socket.io').listen(http);
 
+http.listen(process.env.PORT || 3000);
 
 
 app.use(express.static(path.join(__dirname, 'Public')));
@@ -237,6 +238,8 @@ function Room(roomNr) {
   return this;
 }
 
+/*
 http.listen(process.env.PORT || 3000, function(){
   console.log('listening on *:3000');
 });
+*/
