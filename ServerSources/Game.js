@@ -59,6 +59,7 @@ var Game = function (players) {
         players[ind].move();
         console.log(players[ind].getFace());
         self.turn++;
+        self.turn %= players.length;
     }
 
     this.clickB = function(socketId) {
