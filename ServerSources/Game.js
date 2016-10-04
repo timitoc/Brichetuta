@@ -68,36 +68,36 @@ var Game = function (players) {
         console.log("error 49");
         return;
       }
-      var inWar = [];
-      self.getPlayersIndInWar(inWar);
+      var inWar = self.getPlayersIndInWar();
+
       if (contains(inWar, ind)) {
 
       }
       else {
         for (var i = 0; i < players.length; i++)
             self.cleanRev(i);
-        if (bricCards.length > 0)
+        if (self.bricCards.length > 0)
           self.turn = ind;
         var losers = [ind];
-        self.takeJakpot(losers);
+        self.takeJackpot(losers);
       }
     }
 
     this.cleanRev = function(playerInd) {
       for (var i = 0; i < players[playerInd].revCards.length; i++) {
-        bricCards.push(players[playerInd].revCards[i]);
+        self.bricCards.push(players[playerInd].revCards[i]);
       }
-      player[playerInd].length = 0;
+      players[playerInd].revCards.length = 0;
     }
 
-    this.takeJakpot = function(losers) {
+    this.takeJackpot = function(losers) {
       var crt = 0;
-      while (crt < bricCards.length) {
-        for (var i = 0; i < losers.length && crt < bricCards.length; i++)
-          players[losers[i]].unrevCards.push(bricCards[crt]);
-          crt++;
+      while (crt < self.bricCards.length) {
+      	for (var i = 0; i < losers.length && crt < self.bricCards.length; i++)
+          players[losers[i]].unrevCards.push(self.bricCards[crt]);
+        crt++;
       }
-      bricCards.length = 0;
+      self.bricCards.length = 0;
     }
 
     this.getPlayerIndFromSocketId = function(socketId) {
@@ -107,8 +107,10 @@ var Game = function (players) {
       return -1;
     }
 
-    this.getPlayersIndInWar = function(inWar) {
+    this.getPlayersIndInWar = function() {
+		inWar = [];
 
+		return inWar;
     }
 
     this.getWinners = function() {
