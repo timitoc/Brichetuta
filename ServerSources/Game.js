@@ -69,7 +69,9 @@ var Game = function (players) {
         return;
       }
       var inWar = self.getPlayersIndInWar();
-
+	  console.log("There are " + inWar.length + " in war");
+	  if (inWar.length > 0)
+	  	console.log(inWar);
       if (contains(inWar, ind)) {
 
       }
@@ -109,7 +111,13 @@ var Game = function (players) {
 
     this.getPlayersIndInWar = function() {
 		inWar = [];
-
+		for (var i = 0; i < players.length; i++) {
+			for (var j = i+1; j < players.length; j++)
+				if (deck[players[i].getFace()].sameValue(deck[players[j].getFace()])) {
+					inWar.push(i);
+					inWar.push(j);
+				}
+		}
 		return inWar;
     }
 

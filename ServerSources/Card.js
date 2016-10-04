@@ -56,6 +56,12 @@ var CardViewGenerator = function(){
 var Card = function (suit, value) {
     this.suit = suit;
     this.value = value;
+    this.sameSuit = function(compCard) {
+    	return this.suit == compCard.suit;
+    }
+    this.sameValue = function(compCard) {
+    	return this.value == compCard.value;
+    }
 }
 Card.prototype.viewGenerator = new CardViewGenerator();
 
