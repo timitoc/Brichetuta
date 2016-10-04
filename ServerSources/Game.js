@@ -101,7 +101,7 @@ var Game = function (players) {
       var crt = 0;
       while (crt < self.bricCards.length) {
       	for (var i = 0; i < losers.length && crt < self.bricCards.length; i++)
-          players[losers[i]].unrevCards.push(self.bricCards[crt]);
+          players[losers[i]].unrevCards.unshift(self.bricCards[crt]);
         crt++;
       }
       self.bricCards.length = 0;
@@ -137,6 +137,8 @@ var Game = function (players) {
     }
 
     this.warBetween = function(me, him) {
+    	if (players[me].getFace() == undefined)
+    		return false;
     	if (deck[players[me].getFace()].sameValue(deck[players[him].getFace()]))
     		return true;
     	return false;
