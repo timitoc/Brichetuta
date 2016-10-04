@@ -8,6 +8,7 @@ var Player = function(clientId, userName) {
         this.unrevCards = [];
         this.revCards = [];
         this.move = function() {
+          console.log("player " + self.name + " moves");
           if (self.unrevCards.length <= 0) {
 
           }

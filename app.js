@@ -195,13 +195,19 @@ function Room(roomNr) {
 
       for (var i = 0; i < self.game.players.length; i++)
       {
-          plData.push({last_card: Card.prototype.viewGenerator.getCardView(Deck[self.game.players[i].revCards[self.game.players[i].revCards.length-1]]),
+          var faceInd = self.game.players[i].getFace();
+          if (faceInd != undefined) {
+            console.log(faceInd);
+            console.log(Deck[faceInd]);
+          }
+          plData.push({last_card: Card.prototype.viewGenerator.getCardView(Deck[faceInd]),
               num_card: self.game.players[i].unrevCards.length});
       }
       var toReturn = {
           turn: self.game.turn,
           playerData: plData
       };
+      //console.log(toReturn);
       io.to("room-" + self.roomNr).emit('game_update', toReturn);
   }
 

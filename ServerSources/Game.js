@@ -47,14 +47,18 @@ var Game = function (players) {
 
     this.move = function(socketId) {
         var ind = self.getPlayerIndFromSocketId(socketId);
+        console.log("Ind is: " + ind + " and turn is: " + self.turn);
         if (ind == -1) {
           console.log("error 37");
           return;
         }
-        if (ind != turn) {
+        if (ind != self.turn) {
           return;
         }
+        console.log(players[ind].getFace());
         players[ind].move();
+        console.log(players[ind].getFace());
+        self.turn++;
     }
 
     this.clickB = function(socketId) {
