@@ -173,6 +173,7 @@ function Room(roomNr) {
     for (var i = 0; i < self.game.players.length; i++) {
     	io.to(self.game.players[i].id).emit('start_game', {ind: i});
     }
+    self.sendUpdate();
   }
 
   this.move = function(socketId) {
@@ -188,7 +189,7 @@ function Room(roomNr) {
     if (winners.length > 0) {
       io.to("room-" + self.roomNr).emit('end_round', winners);
       self.game.rule++;
-      if (rule > 7) rule -= 7;
+      if (self.game.rule > 7) self.game.rule -= 7;
       self.game.shuffle();
     }
     self.sendUpdate();
