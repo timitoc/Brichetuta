@@ -1,12 +1,13 @@
 {
-  "name": "Brichetuta",
-  "version": "1.0.0",
+  "name": "brichetuta",
+  "version": "0.0.1",
   "description": "Brichetuta",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
-  "author": " Alex Dumitru,  Razvan Ardelean, Timotei Ardelean",
+  "author": "Alex Dumitru,  Razvan Ardelean, Timotei Ardelean",
   "license": "ISC",
   "dependencies": {
     "express": "^4.14.0",
@@ -15,5 +16,14 @@
     "snapsvg": "^0.4.0",
     "socket.io": "^1.4.8",
     "xmlserializer": "^0.4.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timitoc/Brichetuta.git"
+  },
+  "bugs": {
+    "url": "https://github.com/timitoc/Brichetuta/issues"
+  },
+  "homepage": "https://github.com/timitoc/Brichetuta#readme"
 }
