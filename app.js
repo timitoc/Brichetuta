@@ -169,7 +169,10 @@ function Room(roomNr) {
     self.game = new Game(getPlayersByRoomNr(self.roomNr));
     self.game.shuffle();
     io.to("room-" + self.roomNr).emit('room_status', {description: "GO"});
-    io.to("room-" + self.roomNr).emit('start_game', true);
+    //io.to("room-" + self.roomNr).emit('start_game', {ind: });
+    for (var i = 0; i < self.game.players.length; i++) {
+    	io.to(self.game.players[i].id).emit('start_game', {ind: i});
+    }
   }
 
   this.move = function(socketId) {
