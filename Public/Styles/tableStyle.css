@@ -1,0 +1,19 @@
+.card{
+    cursor: pointer;
+}
+
+#tableCenter{
+    cursor: default;
+}
+
+text{
+    pointer-events: none;
+}
+
+.bricheta{
+    cursor: pointer;
+}
+
+.fire{
+    visibility: hidden;
+}

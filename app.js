@@ -65,6 +65,7 @@ io.on('connection', function(socket){
 
     socket.on('click_brichetuta', function() {
         rooms[selectPlayerBySocketId(socket.id).roomNr].clickB(socket.id);
+        console.log('click pe bricheta');
     });
 
 });
