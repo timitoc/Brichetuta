@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodejs app.js"
+    "start": "node app.js"
   },
   "author": "Alex Dumitru,  Razvan Ardelean, Timotei Ardelean",
   "license": "ISC",
