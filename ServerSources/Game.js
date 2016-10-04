@@ -69,9 +69,16 @@ var Game = function (players) {
         return;
       }
       var inWar = self.getPlayersIndInWar();
-
+	  console.log("There are " + inWar.length + " in war");
+	  if (inWar.length > 0)
+	  	console.log(inWar);
       if (contains(inWar, ind)) {
-
+		var losers = self.getCurrentWarLosersInd(ind);
+		self.cleanRev(ind);
+		for (var i = 0; i < losers.length; i++)
+			self.cleanRev(losers[i]);
+		self.takeJackpot(losers);
+		self.turn = ind;
       }
       else {
         for (var i = 0; i < players.length; i++)
@@ -109,8 +116,30 @@ var Game = function (players) {
 
     this.getPlayersIndInWar = function() {
 		inWar = [];
-
+		for (var i = 0; i < players.length; i++) {
+			for (var j = i+1; j < players.length; j++)
+				if (self.warBetween(i, j)) {
+					inWar.push(i);
+					inWar.push(j);
+				}
+		}
 		return inWar;
+    }
+
+    this.getCurrentWarLosersInd = function(me) {
+    	var losers = [];
+    	for (var i = 0; i < players.length; i++) {
+    		if (i == me) continue;
+    		if (self.warBetween(me, i))
+    			losers.push(i);
+    	}
+    	return losers;
+    }
+
+    this.warBetween = function(me, him) {
+    	if (deck[players[me].getFace()].sameValue(deck[players[him].getFace()]))
+    		return true;
+    	return false;
     }
 
     this.getWinners = function() {
