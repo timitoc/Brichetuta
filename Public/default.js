@@ -198,6 +198,10 @@ GameView.prototype.doupdate = function(e){
         infoPanel.append("Player Ind: " + this.model.playerInd + "<br>");
         infoPanel.append("Nr Cards" + this.model.nrCards[this.model.playerInd] + "<br>");
     }
+
+    if(e.scope == 'turn'){
+        this.focusPlayer(this.model.playerTurn);
+    }
 }
 
 GameView.prototype.notifyChange = function(e){
@@ -247,6 +251,13 @@ GameView.prototype.focusPlayer = function (playerId) {
         last.removeClass('focused');
 
     placeholder.addClass('focused');
+
+    var moveButton = $('#moveButton');
+    if(this.model.playerTurn == this.model.playerInd)
+        moveButton.removeClass('inactive');
+    else
+        moveButton.addClass('inactive');
+
 };
 
 GameView.prototype.loadBricheta = function(){
@@ -289,7 +300,8 @@ function GameController(model, view) {
 GameController.prototype.init = function(){
     var self = this;
     socket.on('game_update', function (data) {
-        self.view.focusPlayer(data.turn);
+        self.model.playerTurn = data.turn;
+        self.view.notifyChange({scope:'playerTurn'});
         for(var i in data.playerData){
             self.model.currentCards[i] = data.playerData[i].last_card;
             self.model.nrCards[i] = data.playerData[i].num_card;

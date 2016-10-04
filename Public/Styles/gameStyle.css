@@ -28,3 +28,16 @@
     height: 100%;
 }
 
+#moveButton{
+    width: 128px;
+    height: 64px;
+    font-size: 32px;
+    position: fixed;
+    top: -16px;
+    left: -16px;
+}
+#moveButton.inactive{
+    pointer-events: none;
+    background-color: dimgray !important;
+}
+
