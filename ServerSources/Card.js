@@ -57,9 +57,11 @@ var Card = function (suit, value) {
     this.suit = suit;
     this.value = value;
     this.sameSuit = function(compCard) {
+    	if (compCard == undefined) return false;
     	return this.suit == compCard.suit;
     }
     this.sameValue = function(compCard) {
+    	if (compCard == undefined) return false;
     	return this.value == compCard.value;
     }
 }

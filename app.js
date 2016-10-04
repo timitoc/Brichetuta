@@ -197,10 +197,10 @@ function Room(roomNr) {
       for (var i = 0; i < self.game.players.length; i++)
       {
           var faceInd = self.game.players[i].getFace();
-          /*if (faceInd != undefined) {
-            console.log(faceInd);
+          if (faceInd != undefined) {
+            console.log("Player " + self.game.players[i].name + " has face card: ");
             console.log(Deck[faceInd]);
-          }*/
+          }
 
           plData.push({last_card: Card.prototype.viewGenerator.getCardView(Deck[faceInd]),
               num_card: self.game.players[i].unrevCards.length});
