@@ -72,6 +72,10 @@ function main(){
         game.view.notifyChange({scope:'cards', players:[0, 1, 2, 3, 4, 5]});
     });
 
+    socket.on("start_game", function (data) {
+        game.start();
+    });
+
     var mWindow = new MWindow(userForm.view.frame);
     mWindow.setHeight('256px');
     mWindow.setWidth('300px');
@@ -93,6 +97,7 @@ function main(){
     socket.on('cardBack', function (data) {
         game.view.cardBack = data;
     })
+
 };
 
 function Game() {
@@ -107,11 +112,28 @@ Game.prototype.create = function () {
     self.controller.init();
 }
 
+Game.prototype.start = function () {
+    this.model.gameState = 'inGame';
+    this.view.notifyChange({scope: 'tableCenter'});
+
+    for(var i = 0; i < 6; i++){
+        this.model.currentCards[i] = 'blank';
+        this.model.lastCards[i] = 'blank';
+    }
+
+    this.view.notifyChange({scope: 'cards', players: [0, 1, 2, 3, 4, 5]});
+}
+
 function GameView(model){
     this.model = model;
     var self = this;
     this.loaded = false;
 
+    this.frame;
+    this.tableDocument;
+    this.snapTable;
+    this.tableCenter;
+    this.textCenter;
 }
 
 GameView.prototype.init = function(){
@@ -121,6 +143,13 @@ GameView.prototype.init = function(){
     var self = this;
     var htmlTableObject = document.getElementById('gameTable');
     this.tableDocument = htmlTableObject.contentDocument;
+
+    var linkElm = this.tableDocument.createElementNS("http://www.w3.org/1999/xhtml", "link");
+    linkElm.setAttribute("href", "/Styles/tableStyle.css");
+    linkElm.setAttribute("type", "text/css");
+    linkElm.setAttribute("rel", "stylesheet");
+    this.tableDocument.getElementsByTagName("svg")[0].appendChild(linkElm);
+
     this.snapTable = Snap(this.tableDocument);
 
     this.tableCenter = this.snapTable.select('#tableCenter')
@@ -139,6 +168,24 @@ GameView.prototype.doupdate = function(e){
     if(e.scope == 'cards')
         for(var i in e.players)
             this.loadCard(i, this.model.currentCards[i]);
+    if(e.scope == 'tableCenter'){
+        if(this.model.gameState == 'message'){
+            this.showMessage();
+            this.hideBricheta();
+        }
+        else if(this.model.gameState == 'inGame'){
+            this.hideMessage();
+            this.loadBricheta();
+        }
+        else{
+            console.log('gameState error');
+        }
+    }
+
+    if(e.scope == 'focusPlayer'){
+        this.unfocusPlayers();
+        this.focusPlayer(this.model.currentPlayer);
+    }
 }
 
 GameView.prototype.notifyChange = function(e){
@@ -180,12 +227,35 @@ GameView.prototype.focusPlayer = function (playerId) {
     placeholder.attr('fill', 'blue');
 };
 
+GameView.prototype.loadBricheta = function(){
+    var self = this;
+    Snap.load('/Assets/bricheta.svg', function(brichetaSvg) {
+        self.bricheta = brichetaSvg.select("g").clone();
+        self.tableCenter.append(self.bricheta);
+
+        var t = new Snap.Matrix();
+        var tableBox = self.tableCenter.select('#tableCenterBackground').getBBox();
+        t.scale(0.8 * (tableBox.height / self.bricheta.getBBox().height));
+        self.bricheta.transform(t);
+        t = new Snap.Matrix();
+        t.translate(tableBox.cx - self.bricheta.getBBox().cx, tableBox.cy - self.bricheta.getBBox().cy);
+        t.add(self.bricheta.transform().localMatrix);
+        self.bricheta.transform(t);
+
+        game.controller.gameInit();  ///Bad practice, not MVC, temporary
+    });
+}
+
+GameView.prototype.hideMessage = function(){
+    this.textCenter.remove();
+}
+
 function GameModel() {
     this.currentCards = [];
     this.lastCards = [];
-    this.loadedDeck = false;
     this.gameState = 'message';
     this.message = "...";
+    this.currentPlayer = -1;
 }
 
 function GameController(model, view) {
@@ -198,9 +268,9 @@ GameController.prototype.init = function(){
     socket.on('game_update', function (data) {
         self.view.focusPlayer(data.turn);
         for(var i in data.playerData){
-            self.model.currentCards[i] = self.view.getSVGcard(data.playerData[i].last_card);
+            self.model.currentCards[i] = data.playerData[i].last_card;
         }
-        self.view.notifyChange({scope:'message'});
+        self.view.notifyChange({scope:'cards', players:[0, 1, 2, 3, 4, 5]});
     })
 
     socket.on('room_status', function(data) {
@@ -211,4 +281,11 @@ GameController.prototype.init = function(){
     $('#moveButton').click(function(){
         socket.emit('move');
     })
+}
+
+GameController.prototype.gameInit = function(){
+    var self = this;
+    this.view.bricheta.click(function () {
+        socket.emit('click_brichetuta');
+    });
 }
