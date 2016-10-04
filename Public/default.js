@@ -212,12 +212,14 @@ GameView.prototype.loadCard = function(playerId, cardLink){
 
     if (cardLink === this.showedCards[playerId])
         return;
+
+    this.showedCards[playerId] = cardLink;
+
     player.selectAll('.card').remove();
     if(cardLink === 'blank') {
         return;
     }
 
-    this.showedCards[playerId] = cardLink;
     Snap.load(cardLink, function(cardPage){
        // console.log(cardPage);
         var card = cardPage.select('.card');
