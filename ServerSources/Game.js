@@ -36,7 +36,7 @@ var Game = function (players) {
       arrayShuffle(cds);
       var ind = 0;
       for (var i = 0; i < players.length; i++)
-        players[i].length = 0;
+        players[i].unrevCards.length = 0;
       while (ind < 52) {
         for (var i = 0; ind < 52 && i < players.length; i++) {
           players[i].unrevCards.push(cds[ind]);
