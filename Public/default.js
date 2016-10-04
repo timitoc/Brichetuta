@@ -188,7 +188,6 @@ GameView.prototype.doupdate = function(e){
     }
 
     if(e.scope == 'focusPlayer'){
-        this.unfocusPlayers();
         this.focusPlayer(this.model.currentPlayer);
     }
 
@@ -199,9 +198,6 @@ GameView.prototype.doupdate = function(e){
         infoPanel.append("Nr Cards" + this.model.nrCards[this.model.playerInd] + "<br>");
     }
 
-    if(e.scope == 'turn'){
-        this.focusPlayer(this.model.playerTurn);
-    }
 }
 
 GameView.prototype.notifyChange = function(e){
@@ -244,16 +240,17 @@ GameView.prototype.loadCard = function(playerId, cardLink){
 }
 
 GameView.prototype.focusPlayer = function (playerId) {
-    var player = this.snapTable.select('#player'+playerId);
-    var placeholder = player.select('rect');
     var last = this.snapTable.select('.focused');
     if(last != null)
         last.removeClass('focused');
+    if(playerId == -1) return;
+    var player = this.snapTable.select('#player'+playerId);
+    var placeholder = player.select('rect');
 
     placeholder.addClass('focused');
 
     var moveButton = $('#moveButton');
-    if(this.model.playerTurn == this.model.playerInd)
+    if(this.model.currentPlayer == this.model.playerInd)
         moveButton.removeClass('inactive');
     else
         moveButton.addClass('inactive');
@@ -300,8 +297,8 @@ function GameController(model, view) {
 GameController.prototype.init = function(){
     var self = this;
     socket.on('game_update', function (data) {
-        self.model.playerTurn = data.turn;
-        self.view.notifyChange({scope:'playerTurn'});
+        self.model.currentPlayer = data.turn;
+        self.view.notifyChange({scope:'focusPlayer'});
         for(var i in data.playerData){
             self.model.currentCards[i] = data.playerData[i].last_card;
             self.model.nrCards[i] = data.playerData[i].num_card;
