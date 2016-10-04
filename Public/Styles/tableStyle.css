@@ -17,3 +17,9 @@ text{
 .fire{
     visibility: hidden;
 }
+
+rect.focused{
+    stroke: #4bfeaa !important;
+    stroke-width: 10;
+    stroke-linecap: round;
+}
