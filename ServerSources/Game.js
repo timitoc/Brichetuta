@@ -69,20 +69,20 @@ var Game = function (players) {
         return;
       }
       var inWar = self.getPlayersIndInWar();
-	  console.log("There are " + inWar.length + " in war");
-	  if (inWar.length > 0)
-	  	console.log(inWar);
+      console.log("There are " + inWar.length + " in war");
+      if (inWar.length > 0)
+        console.log(inWar);
       if (contains(inWar, ind)) {
-		var losers = self.getCurrentWarLosersInd(ind);
-		self.cleanRev(ind);
-		for (var i = 0; i < losers.length; i++)
-			self.cleanRev(losers[i]);
-		self.takeJackpot(losers);
-		self.turn = ind;
+        var losers = self.getCurrentWarLosersInd(ind);
+        self.cleanRev(ind);
+        for (var i = 0; i < losers.length; i++)
+          self.cleanRev(losers[i]);
+        self.takeJackpot(losers);
+        self.turn = ind;
       }
       else {
         for (var i = 0; i < players.length; i++)
-            self.cleanRev(i);
+          self.cleanRev(i);
         if (self.bricCards.length > 0)
           self.turn = ind;
         var losers = [ind];
@@ -104,7 +104,8 @@ var Game = function (players) {
           players[losers[i]].unrevCards.unshift(self.bricCards[crt]);
         crt++;
       }
-      self.bricCards.length = 0;
+      if (losers.length > 0)
+        self.bricCards.length = 0;
     }
 
     this.getPlayerIndFromSocketId = function(socketId) {
@@ -116,6 +117,11 @@ var Game = function (players) {
 
     this.getPlayersIndInWar = function() {
       inWar = [];
+      if (self.rule >= 2 && self.sevenFace()) {
+        for (var i = 0; i < players.length; i++)
+          inWar.push(i);
+        return inWar;
+      }
       for (var i = 0; i < players.length; i++) {
         for (var j = i+1; j < players.length; j++)
           if (self.warBetween(i, j)) {
@@ -126,8 +132,18 @@ var Game = function (players) {
       return inWar;
     }
 
+    this.sevenFace = function() {
+      for (var i = 0; i < players.length; i++) {
+        if (players[i].getFace() == undefined) continue;
+        if (deck[players[i].getFace()].value == 7)
+          return true;
+      }
+      return false;
+    }
+
     this.getCurrentWarLosersInd = function(me) {
     	var losers = [];
+      if (self.rule >= 2 && self.sevenFace()) return losers; 
     	for (var i = 0; i < players.length; i++) {
     		if (i == me) continue;
     		if (self.warBetween(me, i))
