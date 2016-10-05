@@ -1,17 +1,18 @@
+
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var path = require('path');
-var io = require('socket.io').listen(http);
-io.set('origins', '*:*');
-io.set('match origin protocol', true);
+var io = require('socket.io')(http);
 
-http.listen(process.env.PORT || 3000);
-
+var PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'Public')));
 app.use(express.static(path.join(__dirname, 'Public/Sources')));
 app.use(express.static(path.join(__dirname, 'Public/Styles')));
+http.listen(PORT, function() {
+  console.log('Listening on ' + PORT);
+});
 
 var ROOM_MAX_SIZE = 6;
 
