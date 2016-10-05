@@ -115,15 +115,15 @@ var Game = function (players) {
     }
 
     this.getPlayersIndInWar = function() {
-		inWar = [];
-		for (var i = 0; i < players.length; i++) {
-			for (var j = i+1; j < players.length; j++)
-				if (self.warBetween(i, j)) {
-					inWar.push(i);
-					inWar.push(j);
-				}
-		}
-		return inWar;
+      inWar = [];
+      for (var i = 0; i < players.length; i++) {
+        for (var j = i+1; j < players.length; j++)
+          if (self.warBetween(i, j)) {
+            inWar.push(i);
+            inWar.push(j);
+          }
+      }
+      return inWar;
     }
 
     this.getCurrentWarLosersInd = function(me) {
